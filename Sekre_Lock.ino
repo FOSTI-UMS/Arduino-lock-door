@@ -1,5 +1,3 @@
-
-
 /*
 * Read a card using a mfrc522 reader on your SPI interface
 * Pin layout should be as follows (on Arduino Uno):
@@ -18,31 +16,22 @@
 #define led 8
 
 RFID rfid(SS_PIN,RST_PIN);
-
-
 int serNum[5];
 int cards[][5] = {
   {5,117,21,219,190},{131,16,185,69,111},{144,217,135,53,251},{48,219,135,53,89},{21,74,79,230,246},{64,69,225,16,244},{96,218,135,53,8},{94,191,93,89,229},{169,50,201,35,113}
 ,{169,50,201,35,113}};
-
 bool access = false;
 
 void setup(){
-
     Serial.begin(9600);
     SPI.begin();
     rfid.init();
-
     pinMode(led, OUTPUT);
-
-    digitalWrite(led, HIGH);
-   
+    digitalWrite(led, HIGH);   
 }
 
 void loop(){
-    
-    if(rfid.isCard()){
-    
+    if(rfid.isCard()){    
         if(rfid.readCardSerial()){
             Serial.print(rfid.serNum[0]);
             Serial.print(" ");
@@ -85,9 +74,6 @@ void loop(){
       digitalWrite(led, HIGH);
     }
     
-    
     rfid.halt();
 
 }
-
-
